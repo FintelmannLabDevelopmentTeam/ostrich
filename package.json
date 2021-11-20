@@ -1,0 +1,15 @@
+{
+  "name": "@fintellab/ostrich",
+  "version": "0.1.0",
+  "description": "*ostrich* is a volumetric imaging library for the web.",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FintelmannLabDevelopmentTeam/ostrich.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FintelmannLabDevelopmentTeam/ostrich/issues"
+  },
+  "homepage": "https://github.com/FintelmannLabDevelopmentTeam/ostrich#readme"
+}
