@@ -2,7 +2,7 @@
   "name": "@fintellab/ostrich",
   "version": "0.1.0",
   "description": "*ostrich* is a volumetric imaging library for the web.",
-  "main": "src/index.js",
+  "main": "dist/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FintelmannLabDevelopmentTeam/ostrich.git"
@@ -11,5 +11,16 @@
   "bugs": {
     "url": "https://github.com/FintelmannLabDevelopmentTeam/ostrich/issues"
   },
-  "homepage": "https://github.com/FintelmannLabDevelopmentTeam/ostrich#readme"
+  "homepage": "https://github.com/FintelmannLabDevelopmentTeam/ostrich#readme",
+  "dependencies": {
+    "chai": "^4.3.4"
+  },
+  "devDependencies": {
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "serve-example": "webpack --mode development --watch"
+  }
 }

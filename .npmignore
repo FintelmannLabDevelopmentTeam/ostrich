@@ -1,0 +1,9 @@
+
+.github/
+example/
+src/
+
+.gitignore
+.npmignore
+package-lock.json
+webpack.config.json
