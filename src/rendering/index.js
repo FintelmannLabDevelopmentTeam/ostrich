@@ -1,2 +1,2 @@
 
-export {renderElement} from "./renderElement";
+export * from "./renderElement";

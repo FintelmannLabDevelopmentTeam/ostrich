@@ -1,7 +1,8 @@
 
 import {assert} from "chai";
-import {renderElement} from "./rendering";
-import {getElementImageContext, ImageContext, initializeElementImageContext} from "./context";
+import {renderElement} from "../rendering";
+import {getElementImageContext, ImageContext, initializeElementImageContext} from "../context";
+import {jumpToSlice} from "./jumpToSlice";
 
 function wheelEventHandler(event) {
 
@@ -13,9 +14,7 @@ function wheelEventHandler(event) {
 
   if (newSlice >= 0 && newSlice < imageContext.dimensions[0]) {
 
-    imageContext.slice = newSlice;
-
-    renderElement(canvasElement);
+    jumpToSlice(canvasElement, newSlice);
   }
 }
 

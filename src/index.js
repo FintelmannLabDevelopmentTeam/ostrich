@@ -1,2 +1,2 @@
 
-export {initializeElement} from "./initialization";
+export * from "./interface";

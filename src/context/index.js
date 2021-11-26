@@ -1,3 +1,3 @@
 
-export {initializeElementImageContext,getElementImageContext} from "./ElementImageContext";
-export {ImageContext} from "./ImageContext";
+export * from "./ElementImageContext";
+export * from "./ImageContext";

@@ -17,3 +17,12 @@
    ```
 
 3. Open `example/example.html` in a web-browser.
+
+## API
+
+ostrich is always initialized on an existing `<canvas>`-element
+
+| Method | Description |
+| --- | --- |
+| `ostrich.initializeElement(canvasElement)` | Initializes ostrich on the given `HTMLCanvasElement`. |
+| `ostrich.jumpToSlice(canvasElement, slice)` | Switches to the given slice number. |
