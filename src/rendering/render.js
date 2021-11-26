@@ -1,26 +1,26 @@
 
+import {assert} from "chai";
+
 /**
- * Renders given raw data into a Uint8ClampedArray that can be used for CanvasImageData.
+ * Renders given raw data into the given Uint8ClampedArray usable as CanvasImageData.data
  *
  * @param {!Uint16Array} data
  * @param {!number[]} dimensions
  * @param {number} slice
- * @returns {Uint8ClampedArray}
+ * @param {Uint8ClampedArray} targetImageDataData
  */
-export function render(data, dimensions, slice) {
+export function render(data, dimensions, slice, targetImageDataData) {
 
   const sliceDataLength = dimensions[1] * dimensions[2];
 
-  const rgbaSliceData = new Uint8ClampedArray(sliceDataLength * 4);
+  assert.equal(targetImageDataData.length, sliceDataLength * 4);
 
   let imageDataIndex = slice * sliceDataLength;
   let canvasDataIndex = 3;
   const lastImageDataIndex = (slice + 1) * sliceDataLength;
 
   while (imageDataIndex < lastImageDataIndex) {
-    rgbaSliceData[canvasDataIndex] = data[imageDataIndex++];
+    targetImageDataData[canvasDataIndex] = data[imageDataIndex++];
     canvasDataIndex += 4;
   }
-
-  return rgbaSliceData;
 }

@@ -1,19 +1,19 @@
 
 import {assert} from "chai";
-import {getImageInfo, initializeImageInfo, updateSlice} from "./imageInfo";
 import {renderElement} from "./rendering";
+import {getElementImageContext, ImageContext, initializeElementImageContext} from "./context";
 
 function wheelEventHandler(event) {
 
   const canvasElement = event.target;
+  const imageContext = getElementImageContext(canvasElement);
 
-  const imageInfo = getImageInfo(canvasElement);
   const sliceDelta = (event.deltaY > 0) ? 1 : -1;
-  const newSlice = imageInfo.slice + sliceDelta;
+  const newSlice = imageContext.slice + sliceDelta;
 
-  if (newSlice >= 0 && newSlice < imageInfo.dimensions[0]) {
+  if (newSlice >= 0 && newSlice < imageContext.dimensions[0]) {
 
-    updateSlice(canvasElement, newSlice);
+    imageContext.slice = newSlice;
 
     renderElement(canvasElement);
   }
@@ -29,7 +29,21 @@ export function initializeElement(canvasElement, data, dimensions, slice) {
 
   assert.typeOf(canvasElement, HTMLCanvasElement.name);
 
-  initializeImageInfo(canvasElement, data, dimensions, slice);
+  const ctx = canvasElement.getContext('2d', {
+
+    // see: https://developers.google.com/web/updates/2019/05/desynchronized
+    desynchronized: true,
+    preserveDrawingBuffer: true,
+
+  });
+
+  const imageContext = new ImageContext(ctx, data, dimensions);
+
+  initializeElementImageContext(canvasElement, imageContext);
+
+  // todo: embedding app should keep control over canvas size
+  canvasElement.width = imageContext.dimensions[1];
+  canvasElement.height = imageContext.dimensions[2];
 
   canvasElement.addEventListener('wheel', wheelEventHandler);
 

@@ -1,26 +1,12 @@
 
-import {getImageInfo} from "../imageInfo";
+import {getElementImageContext} from "../context";
 import {render} from "./render";
 
 export function renderElement(canvasElement) {
 
-  const imageInfo = getImageInfo(canvasElement);
-  const renderedImageData = render(imageInfo.data, imageInfo.dimensions, imageInfo.slice);
+  const imageContext = getElementImageContext(canvasElement);
 
-  // todo: embedding app should keep control over canvas size
-  canvasElement.width = imageInfo.dimensions[1];
-  canvasElement.height = imageInfo.dimensions[2];
+  render(imageContext.data, imageContext.dimensions, imageContext.slice, imageContext.canvasImageData.data);
 
-  const ctx = canvasElement.getContext('2d', {
-
-    // see: https://developers.google.com/web/updates/2019/05/desynchronized
-    desynchronized: true,
-    preserveDrawingBuffer: true,
-
-  });
-
-  const canvasImageData = ctx.createImageData(imageInfo.dimensions[1], imageInfo.dimensions[2]);
-  canvasImageData.data.set(renderedImageData);
-
-  ctx.putImageData(canvasImageData, 0, 0);
+  imageContext.canvasContext.putImageData(imageContext.canvasImageData, 0, 0);
 }
