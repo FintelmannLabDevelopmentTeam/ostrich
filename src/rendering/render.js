@@ -7,20 +7,21 @@ import {assert} from "chai";
  * @param {!Uint16Array} data
  * @param {!number[]} dimensions
  * @param {number} slice
- * @param {Uint8ClampedArray} targetImageDataData
+ * @param {Uint8ClampedArray} target
  */
-export function render(data, dimensions, slice, targetImageDataData) {
+export function render(data, dimensions, slice, target) {
 
   const sliceDataLength = dimensions[1] * dimensions[2];
 
-  assert.equal(targetImageDataData.length, sliceDataLength * 4);
+  assert.typeOf(target, Uint8ClampedArray.name);
+  assert.equal(target.length, sliceDataLength * 4);
 
   let imageDataIndex = slice * sliceDataLength;
   let canvasDataIndex = 3;
   const lastImageDataIndex = (slice + 1) * sliceDataLength;
 
   while (imageDataIndex < lastImageDataIndex) {
-    targetImageDataData[canvasDataIndex] = data[imageDataIndex++];
+    target[canvasDataIndex] = data[imageDataIndex++];
     canvasDataIndex += 4;
   }
 }
