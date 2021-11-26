@@ -20,9 +20,16 @@
 
 ## API
 
-ostrich is always initialized on an existing `<canvas>`-element
+ostrich is always initialized on an existing `<canvas>`-element.
+Afterwards, the following methods are available and events are triggered:
 
 | Method | Description |
 | --- | --- |
 | `ostrich.initializeElement(canvasElement)` | Initializes ostrich on the given `HTMLCanvasElement`. |
 | `ostrich.jumpToSlice(canvasElement, slice)` | Switches to the given slice number. |
+
+| Event | Description |
+| --- | --- |
+| `ostrich.initialize` | Image has been initialized. |
+| `ostrich.rendered` | Image has been rendered after some change. |
+| `ostrich.sliceChange` | Slice has been changed. |

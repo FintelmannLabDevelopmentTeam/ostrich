@@ -26,6 +26,8 @@ function wheelEventHandler(event) {
  */
 export function initializeElement(canvasElement, data, dimensions, slice) {
 
+  console.info(`Initializing ostrich on element:`, canvasElement);
+
   assert.typeOf(canvasElement, HTMLCanvasElement.name);
 
   const ctx = canvasElement.getContext('2d', {
@@ -45,6 +47,10 @@ export function initializeElement(canvasElement, data, dimensions, slice) {
   canvasElement.height = imageContext.dimensions[2];
 
   canvasElement.addEventListener('wheel', wheelEventHandler);
+
+  canvasElement.dispatchEvent(new Event('ostrich.initialize', {
+    bubbles: true,
+  }));
 
   renderElement(canvasElement);
 }

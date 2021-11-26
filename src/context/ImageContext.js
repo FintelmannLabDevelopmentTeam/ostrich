@@ -17,6 +17,7 @@ export class ImageContext {
   constructor(canvasContext, rawData, dimensions) {
 
     assert.typeOf(canvasContext, CanvasRenderingContext2D.name);
+    assert.isNotEmpty(canvasContext.canvas.id, 'Canvas element has to have an id.');
     assert.typeOf(rawData, Uint16Array.name);
     assert.isArray(dimensions);
     assert.equal(dimensions.length, 3);
@@ -78,5 +79,10 @@ export class ImageContext {
   get canvasImageData() {
 
     return this.#canvasImageData;
+  }
+
+  getImageIdentifier() {
+
+    return this.#canvasContext.canvas.id;
   }
 }

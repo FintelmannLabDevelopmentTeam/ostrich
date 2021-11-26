@@ -9,4 +9,8 @@ export function renderElement(canvasElement) {
   render(imageContext.data, imageContext.dimensions, imageContext.slice, imageContext.canvasImageData.data);
 
   imageContext.canvasContext.putImageData(imageContext.canvasImageData, 0, 0);
+
+  canvasElement.dispatchEvent(new Event('ostrich.rendered', {
+    bubbles: true,
+  }));
 }

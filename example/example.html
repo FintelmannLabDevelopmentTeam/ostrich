@@ -18,10 +18,16 @@
 
 <body>
 
-    <canvas id="canvas"></canvas>
+    <canvas id="example-canvas"></canvas>
 
     <script src="../dist/main.js"></script>
     <script>
+
+      const canvasElement = document.getElementById('example-canvas');
+
+      canvasElement.addEventListener('ostrich.initialize', evt => console.log(evt));
+      canvasElement.addEventListener('ostrich.rendered', evt => console.log(evt));
+      canvasElement.addEventListener('ostrich.sliceChange', evt => console.log(evt));
 
       const dimensions = [10, 800, 600];
       const data = new Uint16Array(dimensions[0] * dimensions[1] * dimensions[2]);
@@ -31,7 +37,7 @@
         data[i] = i % 255;
       }
 
-      ostrich.initializeElement(document.getElementById('canvas'), data, dimensions, 3);
+      ostrich.initializeElement(canvasElement, data, dimensions, 3);
 
     </script>
 
