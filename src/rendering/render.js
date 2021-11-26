@@ -1,4 +1,12 @@
 
+/**
+ * Renders given raw data into a Uint8ClampedArray that can be used for CanvasImageData.
+ *
+ * @param {!Uint16Array} data
+ * @param {!number[]} dimensions
+ * @param {number} slice
+ * @returns {Uint8ClampedArray}
+ */
 export function render(data, dimensions, slice) {
 
   const sliceDataLength = dimensions[1] * dimensions[2];
