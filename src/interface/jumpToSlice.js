@@ -15,7 +15,7 @@ export function jumpToSlice(canvasElement, slice) {
 
   renderElement(canvasElement);
 
-  canvasElement.dispatchEvent(new CustomEvent('ostrich.sliceChange', {
+  canvasElement.dispatchEvent(new CustomEvent('ostrich.sliceChanged', {
     detail: {
       from: oldSlice,
       to: slice,

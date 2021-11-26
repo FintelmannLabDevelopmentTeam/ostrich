@@ -2,6 +2,7 @@
 
 ## [unreleased]
 
+- Add: Added events `ostrich.initialized`, `ostrich.rendered` and `ostrich.sliceChanged`
 - Add: Added `ostrich.jumpToSlice()`
 - Add: Implemented basic rendering
 

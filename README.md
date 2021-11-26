@@ -30,6 +30,6 @@ Afterwards, the following methods are available and events are triggered:
 
 | Event | Description |
 | --- | --- |
-| `ostrich.initialize` | Image has been initialized. |
+| `ostrich.initialized` | Image has been initialized. |
 | `ostrich.rendered` | Image has been rendered after some change. |
-| `ostrich.sliceChange` | Slice has been changed. |
+| `ostrich.sliceChanged` | Slice has been changed. |

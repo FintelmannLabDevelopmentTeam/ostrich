@@ -49,7 +49,7 @@ export function initializeElement(canvasElement, data, dimensions, slice) {
 
   canvasElement.addEventListener('wheel', wheelEventHandler);
 
-  canvasElement.dispatchEvent(new Event('ostrich.initialize', {
+  canvasElement.dispatchEvent(new Event('ostrich.initialized', {
     bubbles: true,
   }));
 
