@@ -6,7 +6,7 @@ import {ImageContext} from "./ImageContext";
  * @param {HTMLCanvasElement} canvasElement
  * @param {ImageContext} imageContext
  */
-export function initializeElementImageContext(canvasElement, imageContext) {
+export function setElementImageContext(canvasElement, imageContext) {
 
   assert.typeOf(canvasElement, HTMLCanvasElement.name);
   assert.isTrue(Object.is(canvasElement, imageContext.canvasContext.canvas));

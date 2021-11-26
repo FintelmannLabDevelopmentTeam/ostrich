@@ -1,7 +1,7 @@
 
 import {assert} from "chai";
 import {renderElement} from "../rendering";
-import {getElementImageContext, ImageContext, initializeElementImageContext} from "../context";
+import {getElementImageContext, ImageContext, setElementImageContext} from "../context";
 import {jumpToSlice} from "./jumpToSlice";
 
 function wheelEventHandler(event) {
@@ -40,9 +40,10 @@ export function initializeElement(canvasElement, data, dimensions, slice) {
 
   const imageContext = new ImageContext(ctx, data, dimensions);
 
-  initializeElementImageContext(canvasElement, imageContext);
+  setElementImageContext(canvasElement, imageContext);
 
   // todo: embedding app should keep control over canvas size
+  // todo: (can be removed as soon as transform is implemented for zoom/pan)
   canvasElement.width = imageContext.dimensions[1];
   canvasElement.height = imageContext.dimensions[2];
 

@@ -1,3 +1,3 @@
 
-export * from "./ElementImageContext";
+export * from "./elementImageContext";
 export * from "./ImageContext";
