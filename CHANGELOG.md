@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+## 0.2.0
+
 - Add: Added events `ostrich.initialized`, `ostrich.rendered`, `ostrich.sliceChanged`, `ostrich.activateTool`, `ostrich.deactivateTool`
 - Add: Added method `ostrich.jumpToSlice()`
 - Add: Added tool `ostrich.SliceScrollingTool`
