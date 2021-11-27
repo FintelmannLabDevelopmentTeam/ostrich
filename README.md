@@ -52,8 +52,9 @@ const imageData = new ostrich.OstrichImageData(data, dimensions);
 
 | Method | Description |
 | --- | --- |
+| `ostrich.changeVoiWindow(canvasElement: HTMLCanvasElement, windowCenter: number, windowWidth: number, render: boolean)` | Changes the Value Of Interest (*VOI*) window. |
 | `ostrich.initializeElement(canvasElement: HTMLCanvasElement, imageData: ostrich.OstrichImageData)` | Initializes ostrich on the given canvas element. |
-| `ostrich.jumpToSlice(canvasElement: HTMLCanvasElement, slice: number)` | Switches to the given slice number. |
+| `ostrich.jumpToSlice(canvasElement: HTMLCanvasElement, slice: number, render: boolean)` | Switches to the given slice number. |
 
 ### Events
 
@@ -64,8 +65,9 @@ The following events are dispatched on an initialized `<canvas>`-element:
 | `ostrich.initialized` | Image has been initialized. | - |
 | `ostrich.rendered` | Image has been rendered after some change. | - |
 | `ostrich.sliceChanged` | Slice has been changed. | `{ from: number, to: number }` |
-| `ostrich.activateTool` | Tool has been activated. | `{ tool: Tool }` |
-| `ostrich.deactivateTool` | Tool has been deactivated. | `{ tool: Tool }` |
+| `ostrich.toolActivated` | Tool has been activated. | `{ tool: Tool }` |
+| `ostrich.toolDeactivated` | Tool has been deactivated. | `{ tool: Tool }` |
+| `ostrich.voiWindowChanged` | VOI window has been changed. | `{ newWindowCenter: number, newWindowWidth: number }` |
 
 ## Tools
 

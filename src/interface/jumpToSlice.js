@@ -5,15 +5,18 @@ import {renderElement} from "../rendering";
 /**
  * @param {HTMLCanvasElement} canvasElement
  * @param {number} slice
+ * @param {boolean} render
  */
-export function jumpToSlice(canvasElement, slice) {
+export function jumpToSlice(canvasElement, slice, render = true) {
 
   const imageContext = getElementImageContext(canvasElement);
   const oldSlice = imageContext.slice;
 
   imageContext.slice = slice;
 
-  renderElement(canvasElement);
+  if (render) {
+    renderElement(canvasElement);
+  }
 
   canvasElement.dispatchEvent(new CustomEvent('ostrich.sliceChanged', {
     detail: {

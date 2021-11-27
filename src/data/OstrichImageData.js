@@ -1,10 +1,14 @@
 
 import {assert} from "chai";
 
+import {computeLimits} from "../math";
+
 export class OstrichImageData {
 
   #data
   #dimensions
+
+  #limits
 
   /**
    * @param {Uint16Array} data
@@ -35,5 +39,18 @@ export class OstrichImageData {
   get dimensions() {
 
     return this.#dimensions;
+  }
+
+  /**
+   * @return {{min: number, max: number}}
+   */
+  getLimits() {
+
+    if (!this.#limits) {
+
+      this.#limits = computeLimits(this.#data);
+    }
+
+    return this.#limits;
   }
 }

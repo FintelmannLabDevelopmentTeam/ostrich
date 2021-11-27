@@ -3,6 +3,19 @@ import {assert} from "chai";
 
 import {renderElement} from "../rendering";
 import {ImageContext, setElementImageContext} from "../context";
+import {computeDefaultVoiWindow} from "../rendering/voi";
+import {changeVoiWindow} from "./changeVoiWindow";
+
+/**
+ * @param {HTMLCanvasElement} canvasElement
+ * @param {OstrichImageData} imageData
+ */
+function setDefaultVoiWindow(canvasElement, imageData) {
+
+  const voiWindow = computeDefaultVoiWindow(imageData);
+
+  changeVoiWindow(canvasElement, voiWindow.center, voiWindow.width, false);
+}
 
 /**
  * @param {HTMLCanvasElement} canvasElement
@@ -34,6 +47,8 @@ export function initializeElement(canvasElement, imageData) {
   canvasElement.dispatchEvent(new Event('ostrich.initialized', {
     bubbles: true,
   }));
+
+  setDefaultVoiWindow(canvasElement, imageData);
 
   renderElement(canvasElement);
 }
