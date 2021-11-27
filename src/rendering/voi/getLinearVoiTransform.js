@@ -6,6 +6,7 @@ import {VoiWindow} from "./VoiWindow";
 /**
  * @param {VoiWindow} voiWindow
  * @param {number} limit
+ * @returns {function(number):number}
  */
 export function getLinearVoiTransform(voiWindow, limit) {
 
