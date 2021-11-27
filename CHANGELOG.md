@@ -3,6 +3,7 @@
 ## [unreleased]
 
 - Chg: Introduced `ostrich.OstrichImageData` which is now taken by `ostrich.initializeElement()`
+- Add: Added tool `ostrich.VoiWindowingTool`
 - Add: Implemented Value Of Interest (VOI) windowing
 - Add: Added event `ostrich.voiWindowChanged`
 - Add: Added method `ostrich.changeVoiWindow`
