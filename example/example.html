@@ -23,6 +23,19 @@
     <script src="../dist/main.js"></script>
     <script>
 
+      function generateImageData() {
+
+        const dimensions = [10, 800, 600];
+        const data = new Uint16Array(dimensions[0] * dimensions[1] * dimensions[2]);
+
+        // generate some test data
+        for (let i = 0; i < data.length; i++) {
+          data[i] = i % 255;
+        }
+
+        return new ostrich.OstrichImageData(data, dimensions);
+      }
+
       const canvasElement = document.getElementById('example-canvas');
 
       canvasElement.addEventListener('ostrich.initialized', evt => console.log(evt));
@@ -31,15 +44,7 @@
       canvasElement.addEventListener('ostrich.toolActivated', evt => console.log(evt));
       canvasElement.addEventListener('ostrich.toolDeactivated', evt => console.log(evt));
 
-      const dimensions = [10, 800, 600];
-      const data = new Uint16Array(dimensions[0] * dimensions[1] * dimensions[2]);
-
-      // generate some test data
-      for (let i = 0; i < data.length; i++) {
-        data[i] = i % 255;
-      }
-
-      ostrich.initializeElement(canvasElement, data, dimensions);
+      ostrich.initializeElement(canvasElement, generateImageData());
       ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
 
     </script>

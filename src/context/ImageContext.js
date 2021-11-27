@@ -2,50 +2,37 @@
 import {assert} from "chai";
 
 import {Tool} from "../tools";
+import {OstrichImageData} from "../data";
 
 export class ImageContext {
 
+  #imageData
   #canvasContext
   #canvasImageData
-  #rawData
-  #dimensions
   #slice = 0
   #tools = {}
 
   /**
-   * @param {!CanvasRenderingContext2D} canvasContext
-   * @param {!Uint16Array} rawData
-   * @param {!number[]} dimensions
+   * @param {OstrichImageData} imageData
+   * @param {CanvasRenderingContext2D} canvasContext
    */
-  constructor(canvasContext, rawData, dimensions) {
+  constructor(imageData, canvasContext) {
 
+    assert.instanceOf(imageData, OstrichImageData);
     assert.typeOf(canvasContext, CanvasRenderingContext2D.name);
     assert.isNotEmpty(canvasContext.canvas.id, 'Canvas element has to have an id.');
-    assert.typeOf(rawData, Uint16Array.name);
-    assert.isArray(dimensions);
-    assert.equal(dimensions.length, 3);
-    assert.equal(dimensions.reduce((previousValue, currentValue) => previousValue * currentValue, 1), rawData.length);
 
+    this.#imageData = imageData;
     this.#canvasContext = canvasContext;
-    this.#canvasImageData = canvasContext.createImageData(dimensions[1], dimensions[2]);
-    this.#rawData = rawData;
-    this.#dimensions = dimensions;
+    this.#canvasImageData = canvasContext.createImageData(imageData.dimensions[1], imageData.dimensions[2]);
   }
 
   /**
-   * @returns {Uint16Array}
+   * @returns {OstrichImageData}
    */
-  get data() {
+  get imageData() {
 
-    return this.#rawData;
-  }
-
-  /**
-   * @returns {number[]}
-   */
-  get dimensions() {
-
-    return this.#dimensions;
+    return this.#imageData;
   }
 
   /**
@@ -63,7 +50,7 @@ export class ImageContext {
 
     assert.isTrue(Number.isInteger(slice));
     assert.isAbove(slice, -1);
-    assert.isBelow(slice, this.#dimensions[0]);
+    assert.isBelow(slice, this.#imageData.dimensions[0]);
 
     this.#slice = slice;
   }

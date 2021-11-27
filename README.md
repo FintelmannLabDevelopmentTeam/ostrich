@@ -27,15 +27,32 @@ ostrich is always initialized on an existing `<canvas>`-element:
 
 <script src="dist/main.js"></script>
 <script>
-   ostrich.initializeElement(document.getElementById('my-canvas-element'));
+   
+   const canvasElement = document.getElementById('my-canvas-element');
+   const imageData = new ostrich.OstrichImageData(/*...*/);
+   
+   ostrich.initializeElement(canvasElement, imageData);
 </script>
+```
+
+### `ostrich.OstrichImageData`
+
+Image data to be rendered has to be passed as an instance of `ostrich.OstrichImageData` to `ostrich.initializeElement`:
+
+```js
+
+// image data is passed by a Uint16Array containing the actual data accompinied by dimensionality information as a three-valued array
+const dimensions = [10, 800, 600];
+const data = new Uint16Array(dimensions[0] * dimensions[1] * dimensions[2]);
+
+const imageData = new ostrich.OstrichImageData(data, dimensions);
 ```
 
 ### Methods
 
 | Method | Description |
 | --- | --- |
-| `ostrich.initializeElement(canvasElement: HTMLCanvasElement, data: Uint16Array, dimensions: number[])` | Initializes ostrich on the given canvas element. |
+| `ostrich.initializeElement(canvasElement: HTMLCanvasElement, imageData: ostrich.OstrichImageData)` | Initializes ostrich on the given canvas element. |
 | `ostrich.jumpToSlice(canvasElement: HTMLCanvasElement, slice: number)` | Switches to the given slice number. |
 
 ### Events
@@ -57,8 +74,9 @@ All tools have to be activated on an initialized image, e.g.:
 
 ```js
 const canvasElement = document.getElementById('my-canvas-element');
+const imageData = new ostrich.OstrichImageData(/*...*/);
 
-ostrich.initializeElement(canvasElement);
+ostrich.initializeElement(canvasElement, imageData);
 ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
 ```
 

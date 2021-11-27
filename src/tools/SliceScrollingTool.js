@@ -23,7 +23,7 @@ export class SliceScrollingTool extends Tool {
     const sliceDelta = (event.deltaY > 0) ? 1 : -1;
     const newSlice = imageContext.slice + sliceDelta;
 
-    if (newSlice >= 0 && newSlice < imageContext.dimensions[0]) {
+    if (newSlice >= 0 && newSlice < imageContext.imageData.dimensions[0]) {
 
       jumpToSlice(canvasElement, newSlice);
     }

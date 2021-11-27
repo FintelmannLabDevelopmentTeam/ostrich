@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+- Chg: Introduced `ostrich.OstrichImageData` which is now taken by `ostrich.initializeElement()`
+
 ## 0.2.0
 
 - Add: Added events `ostrich.initialized`, `ostrich.rendered`, `ostrich.sliceChanged`, `ostrich.activateTool`, `ostrich.deactivateTool`

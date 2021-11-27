@@ -5,11 +5,10 @@ import {renderElement} from "../rendering";
 import {ImageContext, setElementImageContext} from "../context";
 
 /**
- * @param {!HTMLCanvasElement} canvasElement
- * @param {!Uint16Array} data
- * @param {!number[]} dimensions
+ * @param {HTMLCanvasElement} canvasElement
+ * @param {OstrichImageData} imageData
  */
-export function initializeElement(canvasElement, data, dimensions) {
+export function initializeElement(canvasElement, imageData) {
 
   assert.typeOf(canvasElement, HTMLCanvasElement.name);
 
@@ -23,14 +22,14 @@ export function initializeElement(canvasElement, data, dimensions) {
 
   });
 
-  const imageContext = new ImageContext(ctx, data, dimensions);
+  const imageContext = new ImageContext(imageData, ctx);
 
   setElementImageContext(canvasElement, imageContext);
 
   // todo: embedding app should keep control over canvas size
   // todo: (can be removed as soon as transform is implemented for zoom/pan)
-  canvasElement.width = imageContext.dimensions[1];
-  canvasElement.height = imageContext.dimensions[2];
+  canvasElement.width = imageData.dimensions[1];
+  canvasElement.height = imageData.dimensions[2];
 
   canvasElement.dispatchEvent(new Event('ostrich.initialized', {
     bubbles: true,
