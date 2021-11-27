@@ -1,6 +1,8 @@
 
 import {assert} from "chai";
 
+import {Tool} from "../tools";
+
 export class ImageContext {
 
   #canvasContext
@@ -8,6 +10,7 @@ export class ImageContext {
   #rawData
   #dimensions
   #slice = 0
+  #tools = {}
 
   /**
    * @param {!CanvasRenderingContext2D} canvasContext
@@ -84,5 +87,45 @@ export class ImageContext {
   getImageIdentifier() {
 
     return this.#canvasContext.canvas.id;
+  }
+
+  /**
+   * @returns {Tool[]}
+   */
+  get tools() {
+
+    return this.#tools.values();
+  }
+
+  /**
+   * @param name
+   * @returns {Tool}
+   */
+  getTool(name) {
+
+    assert.property(this.#tools, name);
+
+    return this.#tools[name];
+  }
+
+  /**
+   * @param {Tool} tool
+   */
+  addTool(tool) {
+
+    assert.instanceOf(tool, Tool);
+
+    const name = tool.constructor.name;
+
+    assert.notProperty(this.#tools, name);
+
+    this.#tools[name] = tool;
+  }
+
+  removeTool(name) {
+
+    assert.property(this.#tools, name);
+
+    delete this.#tools[name];
   }
 }

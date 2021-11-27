@@ -1,5 +1,6 @@
 
 import {assert} from "chai";
+
 import {ImageContext} from "./ImageContext";
 
 /**

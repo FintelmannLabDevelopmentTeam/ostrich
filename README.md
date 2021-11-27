@@ -20,16 +20,50 @@
 
 ## API
 
-ostrich is always initialized on an existing `<canvas>`-element.
-Afterwards, the following methods are available and events are triggered:
+ostrich is always initialized on an existing `<canvas>`-element:
+
+```html
+<canvas id="my-canvas-element"></canvas>
+
+<script src="dist/main.js"></script>
+<script>
+   ostrich.initializeElement(document.getElementById('my-canvas-element'));
+</script>
+```
+
+### Methods
 
 | Method | Description |
 | --- | --- |
 | `ostrich.initializeElement(canvasElement)` | Initializes ostrich on the given `HTMLCanvasElement`. |
 | `ostrich.jumpToSlice(canvasElement, slice)` | Switches to the given slice number. |
 
-| Event | Description |
+### Events
+
+The following events are dispatched on an initialized `<canvas>`-element:
+
+| Event | Description | Event Details |
+| --- | --- | --- |
+| `ostrich.initialized` | Image has been initialized. | - |
+| `ostrich.rendered` | Image has been rendered after some change. | - |
+| `ostrich.sliceChanged` | Slice has been changed. | `{ from: number, to: number }` |
+| `ostrich.activateTool` | Tool has been activated. | `{ tool: Tool }` |
+| `ostrich.deactivateTool` | Tool has been deactivated. | `{ tool: Tool }` |
+
+## Tools
+
+In addition to the general API, ostrich comes with several *tools* to interact with a loaded image.
+All tools have to be activated on an initialized image, e.g.:
+
+```js
+const canvasElement = document.getElementById('my-canvas-element');
+
+ostrich.initializeElement(canvasElement);
+ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
+```
+
+### All tools
+
+| Tool Class | Description |
 | --- | --- |
-| `ostrich.initialized` | Image has been initialized. |
-| `ostrich.rendered` | Image has been rendered after some change. |
-| `ostrich.sliceChanged` | Slice has been changed. |
+| `ostrich.SliceScrollingTool` | Allows to scroll through image slices with the mouse wheel. |
