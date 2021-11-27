@@ -8,9 +8,8 @@ import {ImageContext, setElementImageContext} from "../context";
  * @param {!HTMLCanvasElement} canvasElement
  * @param {!Uint16Array} data
  * @param {!number[]} dimensions
- * @param {?number} slice
  */
-export function initializeElement(canvasElement, data, dimensions, slice) {
+export function initializeElement(canvasElement, data, dimensions) {
 
   assert.typeOf(canvasElement, HTMLCanvasElement.name);
 
