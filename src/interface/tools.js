@@ -4,6 +4,10 @@ import {assert} from "chai";
 import {getElementImageContext} from "../context";
 import {Tool} from "../tools";
 
+/**
+ * @param {HTMLCanvasElement} canvasElement
+ * @param {Tool} tool
+ */
 export function activateTool(canvasElement, tool) {
 
   assert.instanceOf(tool, Tool);
@@ -20,6 +24,10 @@ export function activateTool(canvasElement, tool) {
   }));
 }
 
+/**
+ * @param {HTMLCanvasElement} canvasElement
+ * @param {string} name
+ */
 export function deactivateTool(canvasElement, name) {
 
   const imageContext = getElementImageContext(canvasElement);

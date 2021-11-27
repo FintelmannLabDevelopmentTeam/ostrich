@@ -35,8 +35,8 @@ ostrich is always initialized on an existing `<canvas>`-element:
 
 | Method | Description |
 | --- | --- |
-| `ostrich.initializeElement(canvasElement)` | Initializes ostrich on the given `HTMLCanvasElement`. |
-| `ostrich.jumpToSlice(canvasElement, slice)` | Switches to the given slice number. |
+| `ostrich.initializeElement(canvasElement: HTMLCanvasElement, data: Uint16Array, dimensions: number[])` | Initializes ostrich on the given canvas element. |
+| `ostrich.jumpToSlice(canvasElement: HTMLCanvasElement, slice: number)` | Switches to the given slice number. |
 
 ### Events
 
