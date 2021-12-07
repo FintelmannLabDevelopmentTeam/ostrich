@@ -2,6 +2,18 @@
 
 ## [unreleased]
 
+- Chg: Introduced `ostrich.OstrichImageData` which is now taken by `ostrich.initializeElement()`
+- Add: Added tool `ostrich.VoiWindowingTool`
+- Add: Implemented Value Of Interest (VOI) windowing
+- Add: Added event `ostrich.voiWindowChanged`
+- Add: Added method `ostrich.changeVoiWindow`
+- Add: Added parameter `render` to `ostrich.jumpToSlice`
+
+## 0.2.0
+
+- Add: Added events `ostrich.initialized`, `ostrich.rendered`, `ostrich.sliceChanged`, `ostrich.activateTool`, `ostrich.deactivateTool`
+- Add: Added method `ostrich.jumpToSlice()`
+- Add: Added tool `ostrich.SliceScrollingTool`
 - Add: Implemented basic rendering
 
 ## 0.1.0

@@ -10,7 +10,7 @@
 
     <style>
         canvas {
-            border: 1px solid blacK;
+            border: 1px solid black;
         }
     </style>
 
@@ -18,20 +18,66 @@
 
 <body>
 
-    <canvas id="canvas"></canvas>
+    <canvas id="example-canvas"></canvas>
+
+    <fieldset>
+        <legend>Windowing</legend>
+        <div>
+            <label>Center: <input type="range" id="windowing-center-input" min="-500" max="500" value="40" /></label>
+        </div>
+        <div>
+            <label>Width: <input type="range" id="windowing-width-input" min="1" max="3000" value="400" /></label>
+        </div>
+    </fieldset>
 
     <script src="../dist/main.js"></script>
     <script>
 
-      const dimensions = [10, 800, 600];
-      const data = new Uint16Array(dimensions[0] * dimensions[1] * dimensions[2]);
+      function generateImageData() {
 
-      // generate some test data
-      for (let i = 0; i < data.length; i++) {
-        data[i] = i % 255;
+        const dimensions = [10, 800, 600];
+        const data = new Uint16Array(dimensions[0] * dimensions[1] * dimensions[2]);
+
+        // generate some test data
+        for (let i = 0; i < data.length; i++) {
+          data[i] = i % 255;
+        }
+
+        return new ostrich.OstrichImageData(data, dimensions);
       }
 
-      ostrich.initializeElement(document.getElementById('canvas'), data, dimensions, 3);
+      const canvasElement = document.getElementById('example-canvas');
+      const windowingCenterInputElement = document.getElementById('windowing-center-input');
+      const windowingWidthInputElement = document.getElementById('windowing-width-input');
+
+      canvasElement.addEventListener('ostrich.initialized', evt => console.log(evt));
+      canvasElement.addEventListener('ostrich.rendered', evt => console.log(evt));
+      canvasElement.addEventListener('ostrich.sliceChanged', evt => console.log(evt));
+      canvasElement.addEventListener('ostrich.toolActivated', evt => console.log(evt));
+      canvasElement.addEventListener('ostrich.toolDeactivated', evt => console.log(evt));
+      canvasElement.addEventListener('ostrich.voiWindowChanged', evt => console.log(evt));
+
+      canvasElement.addEventListener('ostrich.voiWindowChanged', evt => {
+        windowingCenterInputElement.value = evt.detail.newWindowCenter;
+        windowingWidthInputElement.value = evt.detail.newWindowWidth;
+      });
+
+      ostrich.initializeElement(canvasElement, generateImageData());
+      ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
+      ostrich.activateTool(canvasElement, new ostrich.VoiWindowingTool());
+
+      function voiWindowInputEventHandler()
+      {
+        const windowingCenter = parseInt(windowingCenterInputElement.value);
+        const windowingWidth = parseInt(windowingWidthInputElement.value);
+
+        ostrich.changeVoiWindow(canvasElement, windowingCenter, windowingWidth);
+
+        return true;
+      }
+
+      windowingCenterInputElement.addEventListener('input', voiWindowInputEventHandler);
+      windowingWidthInputElement.addEventListener('input', voiWindowInputEventHandler);
 
     </script>
 

@@ -1,2 +1,3 @@
 
-export {renderElement} from "./renderElement";
+export * from "./renderElement";
+export * as voi from "./voi";
