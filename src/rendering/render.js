@@ -1,7 +1,7 @@
 
 import {assert} from "chai";
 
-import {getLinearVoiTransform} from "./voi";
+import {getLinearVoiTransform, getVoiLut} from "./voi";
 
 /**
  * Renders given imageData into the given Uint8ClampedArray usable as CanvasImageData.data
@@ -19,13 +19,14 @@ export function render(imageData, slice, voiWindow, target) {
   assert.equal(target.length, sliceDataLength * 4);
 
   const voiTransform = getLinearVoiTransform(voiWindow, 255);
+  const {offset: lutOffset, lut} = getVoiLut(imageData, voiTransform);
 
   let imageDataIndex = slice * sliceDataLength;
   let canvasDataIndex = 3;
   const lastImageDataIndex = (slice + 1) * sliceDataLength;
 
   while (imageDataIndex < lastImageDataIndex) {
-    target[canvasDataIndex] = voiTransform(imageData.data[imageDataIndex++]);
+    target[canvasDataIndex] = lut[imageData.data[imageDataIndex++] + lutOffset];
     canvasDataIndex += 4;
   }
 }
