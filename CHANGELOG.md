@@ -2,6 +2,7 @@
 
 ## [unreleased]
 
+- Chg: Now using `Int16Array` instead of `Uint16Array` for voxel data
 - Chg: Introduced `ostrich.OstrichImageData` which is now taken by `ostrich.initializeElement()`
 - Add: Added tool `ostrich.VoiWindowingTool`
 - Add: Implemented Value Of Interest (VOI) windowing

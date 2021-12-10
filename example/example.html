@@ -36,7 +36,7 @@
       function generateImageData() {
 
         const dimensions = [10, 800, 600];
-        const data = new Uint16Array(dimensions[0] * dimensions[1] * dimensions[2]);
+        const data = new Int16Array(dimensions[0] * dimensions[1] * dimensions[2]);
 
         // generate some test data
         for (let i = 0; i < data.length; i++) {

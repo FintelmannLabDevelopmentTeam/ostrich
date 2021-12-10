@@ -11,12 +11,12 @@ export class OstrichImageData {
   #limits
 
   /**
-   * @param {Uint16Array} data
+   * @param {Int16Array} data
    * @param {number[]} dimensions
    */
   constructor(data, dimensions) {
 
-    assert.typeOf(data, Uint16Array.name);
+    assert.typeOf(data, Int16Array.name);
     assert.isArray(dimensions);
     assert.equal(dimensions.length, 3);
     assert.equal(dimensions.reduce((previousValue, currentValue) => previousValue * currentValue, 1), data.length);
@@ -26,7 +26,7 @@ export class OstrichImageData {
   }
 
   /**
-   * @returns {Uint16Array}
+   * @returns {Int16Array}
    */
   get data() {
 
