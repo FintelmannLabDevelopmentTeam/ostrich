@@ -2,11 +2,12 @@
 import {assert} from "chai";
 
 import {OstrichImageData} from "../../data";
+import {Lut} from "../lut";
 
 /**
  * @param {OstrichImageData} imageData
  * @param {function(number): number} transform
- * @return {{offset: number, lut: Uint8ClampedArray}}
+ * @return {Lut}
  */
 export function getVoiLut(imageData, transform) {
 
@@ -23,8 +24,5 @@ export function getVoiLut(imageData, transform) {
     lut[currentPixelValue + offset] = transform(currentPixelValue);
   }
 
-  return {
-    offset,
-    lut,
-  }
+  return new Lut(lut, offset)
 }
