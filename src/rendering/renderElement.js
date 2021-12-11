@@ -9,7 +9,7 @@ export function renderElement(canvasElement) {
 
   const imageContext = getElementImageContext(canvasElement);
 
-  render(imageContext.imageData, imageContext.slice, imageContext.voiWindow, imageContext.canvasImageData.data);
+  render(imageContext.imageData, imageContext.slice, imageContext.voiWindow, imageContext.canvasImageData);
 
   imageContext.canvasContext.putImageData(imageContext.canvasImageData, 0, 0);
 

@@ -7,7 +7,7 @@ import {Lut} from "../lut";
 /**
  * @param {OstrichImageData} imageData
  * @param {number} slice
- * @param {Uint8ClampedArray} canvasImageData
+ * @param {ImageData} canvasImageData
  * @param {Lut} lut
  */
 export function copyToCanvasImageData(imageData, slice, canvasImageData, lut) {
@@ -15,14 +15,15 @@ export function copyToCanvasImageData(imageData, slice, canvasImageData, lut) {
   assert.instanceOf(imageData, OstrichImageData);
   assert.isNumber(slice);
   assert.isAtLeast(slice, 0)
-  assert.instanceOf(canvasImageData, Uint8ClampedArray);
+  assert.instanceOf(canvasImageData, ImageData);
   assert.instanceOf(lut, Lut);
 
   const sliceDataLength = imageData.dimensions[1] * imageData.dimensions[2];
 
   const sourceData = imageData.data;
+  const targetData = canvasImageData.data;
 
-  assert.equal(canvasImageData.length, sliceDataLength * 4);
+  assert.equal(targetData.length, sliceDataLength * 4);
 
   let imageDataIndex = slice * sliceDataLength;
   let canvasDataIndex = 3;
@@ -30,7 +31,7 @@ export function copyToCanvasImageData(imageData, slice, canvasImageData, lut) {
 
   while (imageDataIndex < lastImageDataIndex) {
 
-    canvasImageData[canvasDataIndex] = lut.lut[sourceData[imageDataIndex] + lut.shift];
+    targetData[canvasDataIndex] = lut.lut[sourceData[imageDataIndex] + lut.shift];
 
     imageDataIndex += 1;
     canvasDataIndex += 4;

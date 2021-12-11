@@ -10,14 +10,14 @@ import {copyToCanvasImageData} from "./canvas";
  * @param {OstrichImageData} imageData
  * @param {number} slice
  * @param {VoiWindow} voiWindow
- * @param {Uint8ClampedArray} target
+ * @param {ImageData} target
  */
 export function render(imageData, slice, voiWindow, target) {
 
   const sliceDataLength = imageData.dimensions[1] * imageData.dimensions[2];
 
-  assert.typeOf(target, Uint8ClampedArray.name);
-  assert.equal(target.length, sliceDataLength * 4);
+  assert.instanceOf(target, ImageData);
+  assert.equal(target.data.length, sliceDataLength * 4);
 
   const voiTransform = getLinearVoiTransform(voiWindow, 255);
   const lut = getVoiLut(imageData, voiTransform);
