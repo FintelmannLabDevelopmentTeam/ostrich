@@ -38,9 +38,13 @@
         const dimensions = [50, 600, 800];
         const data = new Int16Array(dimensions[0] * dimensions[1] * dimensions[2]);
 
-        // generate some test data
-        for (let i = 0; i < data.length; i++) {
-          data[i] = i % 255;
+        // generate some test data (3-sphere with r=100)
+        for (let z = 0; z < dimensions[0]; z++) {
+          for (let y = 0; y < dimensions[1]; y++) {
+            for (let x = 0; x < dimensions[2]; x++) {
+              data[z * dimensions[1] * dimensions[2] + y * dimensions[2] + x] = Math.min(Math.sqrt((25*10 - z*10)**2 + (300 - y)**2 + (400 - x)**2), 100);
+            }
+          }
         }
 
         return new ostrich.OstrichImageData(data, dimensions);
@@ -65,6 +69,7 @@
       ostrich.initializeElement(canvasElement, generateImageData());
       ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
       ostrich.activateTool(canvasElement, new ostrich.VoiWindowingTool());
+      ostrich.jumpToSlice(canvasElement, 25);
 
       function voiWindowInputEventHandler()
       {
