@@ -16,7 +16,7 @@ export function getLinearVoiTransform(voiWindow, limit) {
 
   return value => {
 
-    const transformed = ((value - voiWindow.center) / voiWindow.width) * limit;
+    const transformed = ((value - voiWindow.center) / voiWindow.width + 0.5) * limit;
 
     if (transformed < 0) {
       return 0;
