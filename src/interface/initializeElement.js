@@ -41,8 +41,8 @@ export function initializeElement(canvasElement, imageData) {
 
   // todo: embedding app should keep control over canvas size
   // todo: (can be removed as soon as transform is implemented for zoom/pan)
-  canvasElement.width = imageData.dimensions[1];
-  canvasElement.height = imageData.dimensions[2];
+  canvasElement.height = imageData.dimensions[1];
+  canvasElement.width = imageData.dimensions[2];
 
   canvasElement.dispatchEvent(new Event('ostrich.initialized', {
     bubbles: true,

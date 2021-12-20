@@ -26,7 +26,7 @@ export class ImageContext {
 
     this.#imageData = imageData;
     this.#canvasContext = canvasContext;
-    this.#canvasImageData = canvasContext.createImageData(imageData.dimensions[1], imageData.dimensions[2]);
+    this.#canvasImageData = canvasContext.createImageData(imageData.dimensions[2], imageData.dimensions[1]);
     this.#voiWindow = new VoiWindow(0, 1);
   }
 

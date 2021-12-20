@@ -42,7 +42,7 @@ Image data to be rendered has to be passed as an instance of `ostrich.OstrichIma
 ```js
 
 // image data is passed by a Int16Array containing the actual data accompinied by dimensionality information as a three-valued array
-const dimensions = [10, 800, 600];
+const dimensions = [10, 600, 800]; // depth, height, width
 const data = new Int16Array(dimensions[0] * dimensions[1] * dimensions[2]);
 
 const imageData = new ostrich.OstrichImageData(data, dimensions);
