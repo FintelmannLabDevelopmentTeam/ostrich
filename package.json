@@ -16,11 +16,16 @@
     "chai": "^4.3.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babel-jest": "^27.4.5",
+    "jest": "^27.4.5",
     "webpack": "^5.64.2",
     "webpack-cli": "^4.9.1"
   },
   "scripts": {
     "build": "webpack --mode production",
-    "serve-example": "webpack --mode development --watch"
+    "serve-example": "webpack --mode development --watch",
+    "test": "jest"
   }
 }
