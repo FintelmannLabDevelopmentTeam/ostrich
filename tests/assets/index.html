@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ostrich example</title>
+
+    <style>
+        canvas {
+            border: 1px solid blacK;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="../../dist/main.js"></script>
+    <script>
+
+      const dimensions = [10, 800, 600];
+      const data = new Uint16Array(dimensions[0] * dimensions[1] * dimensions[2]);
+
+      // generate some test data
+      for (let i = 0; i < data.length; i++) {
+        data[i] = i % 255;
+      }
+
+      ostrich.initializeElement(document.getElementById('canvas'), data, dimensions, 3);
+
+    </script>
+
+</body>
+</html>
