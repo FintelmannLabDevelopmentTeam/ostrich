@@ -6,7 +6,7 @@ import {computeLimits} from "../math";
 export class OstrichImageData {
 
   #data
-  #dimensions
+  #dimensions // dimensions as depth, height, width
 
   #limits
 
@@ -39,6 +39,30 @@ export class OstrichImageData {
   get dimensions() {
 
     return this.#dimensions;
+  }
+
+  /**
+   * @return {number}
+   */
+  getDepth() {
+
+    return this.#dimensions[0];
+  }
+
+  /**
+   * @return {number}
+   */
+  getHeight() {
+
+    return this.#dimensions[1];
+  }
+
+  /**
+   * @return {number}
+   */
+  getWidth() {
+
+    return this.#dimensions[2];
   }
 
   /**
