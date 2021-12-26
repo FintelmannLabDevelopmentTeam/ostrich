@@ -4,6 +4,7 @@ import {assert} from "chai";
 import {Tool} from "../tools";
 import {OstrichImageData} from "../data";
 import {VoiWindow} from "../rendering/voi";
+import {Transform} from "../rendering/transform";
 
 export class ImageContext {
 
@@ -11,6 +12,7 @@ export class ImageContext {
   #canvasContext
   #canvasImageData
   #voiWindow
+  #transform
   #slice = 0
   #tools = {}
 
@@ -28,6 +30,7 @@ export class ImageContext {
     this.#canvasContext = canvasContext;
     this.#canvasImageData = canvasContext.createImageData(imageData.dimensions[2], imageData.dimensions[1]);
     this.#voiWindow = new VoiWindow(0, 1);
+    this.#transform = new Transform();
   }
 
   /**
@@ -80,6 +83,14 @@ export class ImageContext {
   get voiWindow() {
 
     return this.#voiWindow;
+  }
+
+  /**
+   * @return {Transform}
+   */
+  get transform() {
+
+    return this.#transform;
   }
 
   getImageIdentifier() {

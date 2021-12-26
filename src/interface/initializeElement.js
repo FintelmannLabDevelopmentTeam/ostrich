@@ -5,6 +5,7 @@ import {renderElement} from "../rendering";
 import {ImageContext, setElementImageContext} from "../context";
 import {computeDefaultVoiWindow} from "../rendering/voi";
 import {changeVoiWindow} from "./changeVoiWindow";
+import {computeInitialTransform} from "../rendering/transform";
 
 /**
  * @param {HTMLCanvasElement} canvasElement
@@ -36,13 +37,9 @@ export function initializeElement(canvasElement, imageData) {
   });
 
   const imageContext = new ImageContext(imageData, ctx);
+  computeInitialTransform(imageData.dimensions, canvasElement.width, canvasElement.height, imageContext.transform);
 
   setElementImageContext(canvasElement, imageContext);
-
-  // todo: embedding app should keep control over canvas size
-  // todo: (can be removed as soon as transform is implemented for zoom/pan)
-  canvasElement.height = imageData.dimensions[1];
-  canvasElement.width = imageData.dimensions[2];
 
   canvasElement.dispatchEvent(new Event('ostrich.initialized', {
     bubbles: true,
