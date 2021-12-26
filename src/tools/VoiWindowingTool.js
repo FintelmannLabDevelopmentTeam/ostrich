@@ -5,10 +5,24 @@ import {getElementImageContext} from "../context";
 
 export class VoiWindowingTool extends Tool {
 
+  /**
+   * Identifies the mouse button to react on.
+   *
+   * @see: https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button#value
+   */
+  #mouseButton
+
   #imageContext
   #isChanging = false
   #lastOffsetX
   #lastOffsetY
+
+  constructor(mouseButton = 0) {
+
+    super();
+
+    this.#mouseButton = mouseButton;
+  }
 
   activate(canvasElement) {
 
@@ -20,9 +34,15 @@ export class VoiWindowingTool extends Tool {
     canvasElement.addEventListener('mouseleave', this.#onMouseLeave.bind(this));
   }
 
-  #onMouseDown() {
+  /**
+   * @param {MouseEvent} event
+   */
+  #onMouseDown(event) {
 
-    this.#isChanging = true;
+    if (event.button === this.#mouseButton) {
+
+      this.#isChanging = true;
+    }
   }
 
   #onMouseMove(evt) {
@@ -42,9 +62,15 @@ export class VoiWindowingTool extends Tool {
     this.#lastOffsetY = evt.offsetY;
   }
 
-  #onMouseUp() {
+  /**
+   * @param {MouseEvent} event
+   */
+  #onMouseUp(event) {
 
-    this.#isChanging = false;
+    if (event.button === this.#mouseButton) {
+
+      this.#isChanging = false;
+    }
   }
 
   #onMouseLeave() {
