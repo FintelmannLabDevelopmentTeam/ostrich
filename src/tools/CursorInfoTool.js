@@ -27,12 +27,12 @@ export class CursorInfoTool extends Tool {
    */
   #mouseMoveEventHandler(event) {
 
-    const targetRect = event.target.getBoundingClientRect();
+    const canvasRect = this.#imageContext.canvas.getBoundingClientRect();
     const imageCoordinates = viewportToImageCoordinates(
       this.#imageContext.imageData,
       this.#imageContext.transform,
-      event.clientX - targetRect.x,
-      event.clientY - targetRect.y,
+      event.clientX - canvasRect.x,
+      event.clientY - canvasRect.y,
     );
 
     if (imageCoordinates)

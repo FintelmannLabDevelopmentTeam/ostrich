@@ -70,6 +70,14 @@ export class ImageContext {
   }
 
   /**
+   * @return {HTMLCanvasElement}
+   */
+  get canvas() {
+
+    return this.#canvasContext.canvas;
+  }
+
+  /**
    * @returns {ImageData}
    */
   get canvasImageData() {
