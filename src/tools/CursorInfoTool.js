@@ -28,6 +28,17 @@ export class CursorInfoTool extends Tool {
   #mouseMoveEventHandler(event) {
 
     const canvasRect = this.#imageContext.canvas.getBoundingClientRect();
+
+    this.#displayElement.style.display = `none`;
+
+    if (
+      event.clientX < canvasRect.x || event.clientX > (canvasRect.x + canvasRect.width) ||
+      event.clientY < canvasRect.y || event.clientY > (canvasRect.y + canvasRect.height)
+    ) {
+      // cursor position is outside viewport
+      return;
+    }
+
     const imageCoordinates = viewportToImageCoordinates(
       this.#imageContext.imageData,
       this.#imageContext.transform,
@@ -43,10 +54,6 @@ export class CursorInfoTool extends Tool {
       this.#displayElement.style.top = `${event.clientY + 25}px`;
       this.#displayElement.style.left = `${event.clientX + 25}px`;
       this.#displayElement.style.display = `block`;
-    }
-    else
-    {
-      this.#displayElement.style.display = `none`;
     }
   }
 }
