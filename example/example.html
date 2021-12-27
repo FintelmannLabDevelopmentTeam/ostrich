@@ -67,6 +67,7 @@
       });
 
       ostrich.initializeElement(canvasElement, generateImageData());
+      ostrich.activateTool(canvasElement, new ostrich.CursorInfoTool());
       ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
       ostrich.activateTool(canvasElement, new ostrich.VoiWindowingTool());
       ostrich.jumpToSlice(canvasElement, 25);

@@ -86,5 +86,6 @@ ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
 
 | Tool Class | Description |
 | --- | --- |
+| `ostrich.CursorInfoTool` | Displays information for the current cursor position. |
 | `ostrich.SliceScrollingTool` | Allows to scroll through image slices with the mouse wheel. |
 | `ostrich.VoiWindowingTool` | Changes VOI windowing by left-click-dragging. |

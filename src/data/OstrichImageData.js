@@ -66,6 +66,35 @@ export class OstrichImageData {
   }
 
   /**
+   * @param {number} z
+   * @param {number} y
+   * @param {number} x
+   * @return {number}
+   */
+  getValueAt(z, y, x) {
+
+    return this.data[this.getDataLocation(z, y, x)];
+  }
+
+  /**
+   * @param {number} z
+   * @param {number} y
+   * @param {number} x
+   * @return {number}
+   */
+  getDataLocation(z, y, x) {
+
+    assert.isAtLeast(z, 0);
+    assert.isAtLeast(y, 0);
+    assert.isAtLeast(x, 0);
+    assert.isBelow(z, this.getDepth());
+    assert.isBelow(y, this.getHeight());
+    assert.isBelow(x, this.getWidth());
+
+    return Math.floor(z) * this.getWidth() * this.getHeight() + Math.floor(y) * this.getWidth() + Math.floor(x);
+  }
+
+  /**
    * @return {{min: number, max: number}}
    */
   getLimits() {

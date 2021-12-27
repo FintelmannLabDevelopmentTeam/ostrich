@@ -7,7 +7,10 @@ describe('image data', () => {
   test('simple', () => {
 
     const imageData = new OstrichImageData(
-      new Int16Array([0, 1, 2, 3, 4, 5]),
+      new Int16Array([
+        0, 1, 2,
+        3, 4, 5,
+      ]),
       [1, 2, 3],
     );
 
@@ -16,6 +19,11 @@ describe('image data', () => {
     expect(imageData.getDepth()).toEqual(1);
     expect(imageData.getHeight()).toEqual(2);
     expect(imageData.getWidth()).toEqual(3);
+    expect(imageData.getValueAt(0, 0, 0)).toBe(0);
+    expect(imageData.getValueAt(0, 0, 1)).toBe(1);
+    expect(imageData.getValueAt(0, 1, 0)).toBe(3);
+    expect(imageData.getValueAt(0, 1, 1)).toBe(4);
+    expect(imageData.getValueAt(0, 1, 2)).toBe(5);
     expect(imageData.getLimits()).toEqual({
       min: 0,
       max: 5,

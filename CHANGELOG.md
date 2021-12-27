@@ -7,6 +7,7 @@
 - Fix: Fixed data-order to z-y-x
 - Fix: Linear VOI transform was off center
 - Add: Implemented viewport scaling and translation via transform
+- Add: Added tool `ostrich.CursorInfoTool`
 - Add: Added tool `ostrich.VoiWindowingTool`
 - Add: Implemented Value Of Interest (VOI) windowing
 - Add: Added event `ostrich.voiWindowChanged`

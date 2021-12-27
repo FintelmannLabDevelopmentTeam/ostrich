@@ -6,11 +6,18 @@ export class Transform {
   // scale=1 corresponds to original size
   // scale<1 corresponds to image being smaller than viewport
   // scale>1 corresponds to image being larger than viewport
-  #scale = 1
+  #scale
 
-  // translation wrt viewport
-  #translateX = 0 // (in width)
-  #translateY = 0 // (in height)
+  // translation of rendering wrt viewport
+  #translateX // (in width)
+  #translateY // (in height)
+
+  constructor(scale = 1, translateX = 0, translateY = 0) {
+
+    this.scale = scale;
+    this.translateX = translateX;
+    this.translateY = translateY;
+  }
 
   /**
    * @returns {number}
