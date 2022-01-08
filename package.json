@@ -1,6 +1,6 @@
 {
   "name": "@fintellab/ostrich",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "*ostrich* is a volumetric imaging library for the web.",
   "main": "dist/main.js",
   "repository": {

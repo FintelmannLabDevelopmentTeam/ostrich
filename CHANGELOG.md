@@ -2,6 +2,8 @@
 
 ## [unreleased]
 
+## 0.3.0
+
 - Chg: Now using `Int16Array` instead of `Uint16Array` for voxel data
 - Chg: Introduced `ostrich.OstrichImageData` which is now taken by `ostrich.initializeElement()`
 - Fix: Fixed data-order to z-y-x
