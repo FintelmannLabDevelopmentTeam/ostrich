@@ -1,9 +1,9 @@
 
-import {Tool} from "./Tool";
-import {changeVoiWindow} from "../interface";
-import {getElementImageContext} from "../context";
+import {assert} from "chai";
 
-export class VoiWindowingTool extends Tool {
+import {Tool} from "./Tool";
+
+export class DraggingTool extends Tool {
 
   /**
    * Identifies the mouse button to react on.
@@ -12,12 +12,14 @@ export class VoiWindowingTool extends Tool {
    */
   #mouseButton
 
-  #imageContext
-  #isChanging = false
+  #isDragging = false
   #lastOffsetX
   #lastOffsetY
 
-  constructor(mouseButton = 0) {
+  constructor(mouseButton) {
+
+    assert.isNumber(mouseButton);
+    assert.isAtLeast(mouseButton, 0);
 
     super();
 
@@ -25,8 +27,6 @@ export class VoiWindowingTool extends Tool {
   }
 
   activate(canvasElement) {
-
-    this.#imageContext = getElementImageContext(canvasElement);
 
     canvasElement.addEventListener('mousedown', this.#onMouseDown.bind(this));
     canvasElement.addEventListener('mousemove', this.#onMouseMove.bind(this));
@@ -41,21 +41,18 @@ export class VoiWindowingTool extends Tool {
 
     if (event.button === this.#mouseButton) {
 
-      this.#isChanging = true;
+      this.#startDrag(event);
     }
   }
 
   #onMouseMove(evt) {
 
-    if (this.#isChanging && this.#lastOffsetX && this.#lastOffsetY) {
+    if (this.#isDragging && this.#lastOffsetX && this.#lastOffsetY) {
 
       const diffX = evt.offsetX - this.#lastOffsetX;
       const diffY = evt.offsetY - this.#lastOffsetY;
 
-      const newWindowCenter = this.#imageContext.voiWindow.center + diffX;
-      const newWindowWidth = this.#imageContext.voiWindow.width + diffY;
-
-      changeVoiWindow(evt.target, newWindowCenter, newWindowWidth);
+      this._drag(evt, diffX, diffY);
     }
 
     this.#lastOffsetX = evt.offsetX;
@@ -69,12 +66,41 @@ export class VoiWindowingTool extends Tool {
 
     if (event.button === this.#mouseButton) {
 
-      this.#isChanging = false;
+      this.#stopDrag(event);
     }
   }
 
-  #onMouseLeave() {
+  #onMouseLeave(event) {
 
-    this.#isChanging = false;
+    this.#stopDrag(event);
+  }
+
+  #startDrag(event) {
+
+    this.#isDragging = true;
+
+    this._startDrag(event);
+  }
+
+  #stopDrag(event) {
+
+    this.#isDragging = false;
+
+    this._stopDrag(event);
+  }
+
+  _startDrag(event) {
+
+    // to be implemented by tool
+  }
+
+  _drag(event) {
+
+    // to be implemented by tool
+  }
+
+  _stopDrag(event) {
+
+    // to be implemented by tool
   }
 }

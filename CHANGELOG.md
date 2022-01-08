@@ -8,10 +8,12 @@
 - Fix: Linear VOI transform was off center
 - Add: Implemented viewport scaling and translation via transform
 - Add: Added tool `ostrich.CursorInfoTool`
-- Add: Added tool `ostrich.VoiWindowingTool`
+- Add: Added tool `ostrich.PanDraggingTool`
+- Add: Added tool `ostrich.VoiWindowDraggingTool`
+- Add: Added tool `ostrich.ZoomDraggingTool`
 - Add: Implemented Value Of Interest (VOI) windowing
-- Add: Added event `ostrich.voiWindowChanged`
-- Add: Added method `ostrich.changeVoiWindow`
+- Add: Added events `ostrich.voiWindowChanged` and `ostrich.transformChanged`
+- Add: Added method `ostrich.changeVoiWindow()`
 - Add: Added parameter `render` to `ostrich.jumpToSlice`
 
 ## 0.2.0

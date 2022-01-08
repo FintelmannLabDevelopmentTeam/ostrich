@@ -52,6 +52,7 @@ const imageData = new ostrich.OstrichImageData(data, dimensions);
 
 | Method | Description |
 | --- | --- |
+| `ostrich.changeTransform(canvasElement: HTMLCanvasElement, scale: ?number, translateX: ?number, translateY: ?number, render: boolean)` | Changes the viewport transform. |
 | `ostrich.changeVoiWindow(canvasElement: HTMLCanvasElement, windowCenter: number, windowWidth: number, render: boolean)` | Changes the Value Of Interest (*VOI*) window. |
 | `ostrich.initializeElement(canvasElement: HTMLCanvasElement, imageData: ostrich.OstrichImageData)` | Initializes ostrich on the given canvas element. |
 | `ostrich.jumpToSlice(canvasElement: HTMLCanvasElement, slice: number, render: boolean)` | Switches to the given slice number. |
@@ -68,6 +69,7 @@ The following events are dispatched on an initialized `<canvas>`-element:
 | `ostrich.toolActivated` | Tool has been activated. | `{ tool: Tool }` |
 | `ostrich.toolDeactivated` | Tool has been deactivated. | `{ tool: Tool }` |
 | `ostrich.voiWindowChanged` | VOI window has been changed. | `{ newWindowCenter: number, newWindowWidth: number }` |
+| `ostrich.transformChanged` | VOI window has been changed. | `{ scale: number, translateX: number, translateY: number }` |
 
 ## Tools
 
@@ -87,5 +89,7 @@ ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
 | Tool Class | Description |
 | --- | --- |
 | `ostrich.CursorInfoTool` | Displays information for the current cursor position. |
+| `ostrich.PanDraggingTool` | Viewport panning by dragging mouse-button. |
 | `ostrich.SliceScrollingTool` | Allows to scroll through image slices with the mouse wheel. |
-| `ostrich.VoiWindowingTool` | Changes VOI windowing by left-click-dragging. |
+| `ostrich.VoiWindowDraggingTool` | Changes VOI windowing by left-click-dragging. |
+| `ostrich.ZoomDraggingTool` | Changes viewport scale by dragging mouse-button. |

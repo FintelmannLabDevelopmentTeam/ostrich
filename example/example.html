@@ -60,16 +60,21 @@
       canvasElement.addEventListener('ostrich.toolActivated', evt => console.log(evt));
       canvasElement.addEventListener('ostrich.toolDeactivated', evt => console.log(evt));
       canvasElement.addEventListener('ostrich.voiWindowChanged', evt => console.log(evt));
+      canvasElement.addEventListener('ostrich.transformChanged', evt => console.log(evt));
 
       canvasElement.addEventListener('ostrich.voiWindowChanged', evt => {
         windowingCenterInputElement.value = evt.detail.newWindowCenter;
         windowingWidthInputElement.value = evt.detail.newWindowWidth;
       });
 
+      canvasElement.addEventListener('contextmenu', (evt) => evt.preventDefault());
+
       ostrich.initializeElement(canvasElement, generateImageData());
       ostrich.activateTool(canvasElement, new ostrich.CursorInfoTool());
+      ostrich.activateTool(canvasElement, new ostrich.PanDraggingTool());
       ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
-      ostrich.activateTool(canvasElement, new ostrich.VoiWindowingTool());
+      ostrich.activateTool(canvasElement, new ostrich.VoiWindowDraggingTool());
+      ostrich.activateTool(canvasElement, new ostrich.ZoomDraggingTool());
       ostrich.jumpToSlice(canvasElement, 25);
 
       function voiWindowInputEventHandler()

@@ -33,6 +33,7 @@ export class Transform {
   set scale(scale) {
 
     assert.isNumber(scale);
+    assert.isAbove(scale, 0);
 
     this.#scale = scale;
   }

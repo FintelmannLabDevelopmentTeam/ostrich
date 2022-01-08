@@ -26,6 +26,7 @@ export function render(imageContext) {
   intermediateCanvasContext.putImageData(intermediateImageData, 0, 0);
 
   // draw intermediate rendering with transformation into final target canvas
+  imageContext.canvasContext.imageSmoothingEnabled = false; // do not smooth out image when zooming in (see: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled)
   imageContext.canvasContext.clearRect(0, 0, imageContext.canvasContext.canvas.width, imageContext.canvasContext.canvas.height);
   applyTransform(intermediateCanvas, imageContext.canvasContext, imageContext.transform);
 }
