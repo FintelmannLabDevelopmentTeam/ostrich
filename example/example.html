@@ -30,6 +30,25 @@
         </div>
     </fieldset>
 
+    <fieldset>
+        <legend>Tools</legend>
+        <div>
+            <label>Cursor Info: <input type="checkbox" class="toggle-tool-checkbox" data-tool="CursorInfoTool" /></label>
+        </div>
+        <div>
+            <label>Pan Dragging: <input type="checkbox" class="toggle-tool-checkbox" data-tool="PanDraggingTool" /></label>
+        </div>
+        <div>
+            <label>Slice Scrolling: <input type="checkbox" class="toggle-tool-checkbox" data-tool="SliceScrollingTool" /></label>
+        </div>
+        <div>
+            <label>Voi Window Dragging: <input type="checkbox" class="toggle-tool-checkbox" data-tool="VoiWindowDraggingTool" /></label>
+        </div>
+        <div>
+            <label>Zoom Dragging: <input type="checkbox" class="toggle-tool-checkbox" data-tool="ZoomDraggingTool" /></label>
+        </div>
+    </fieldset>
+
     <script src="../dist/main.js"></script>
     <script>
 
@@ -70,15 +89,15 @@
       canvasElement.addEventListener('contextmenu', (evt) => evt.preventDefault());
 
       ostrich.initializeElement(canvasElement, generateImageData());
-      ostrich.activateTool(canvasElement, new ostrich.CursorInfoTool());
-      ostrich.activateTool(canvasElement, new ostrich.PanDraggingTool());
-      ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
-      ostrich.activateTool(canvasElement, new ostrich.VoiWindowDraggingTool());
-      ostrich.activateTool(canvasElement, new ostrich.ZoomDraggingTool());
+      ostrich.addTool(canvasElement, new ostrich.CursorInfoTool());
+      ostrich.addTool(canvasElement, new ostrich.PanDraggingTool());
+      ostrich.addTool(canvasElement, new ostrich.SliceScrollingTool());
+      ostrich.addTool(canvasElement, new ostrich.VoiWindowDraggingTool());
+      ostrich.addTool(canvasElement, new ostrich.ZoomDraggingTool());
       ostrich.jumpToSlice(canvasElement, 25);
 
-      function voiWindowInputEventHandler()
-      {
+      function voiWindowInputEventHandler() {
+
         const windowingCenter = parseInt(windowingCenterInputElement.value);
         const windowingWidth = parseInt(windowingWidthInputElement.value);
 
@@ -89,6 +108,31 @@
 
       windowingCenterInputElement.addEventListener('input', voiWindowInputEventHandler);
       windowingWidthInputElement.addEventListener('input', voiWindowInputEventHandler);
+
+      function toggleTool(event) {
+
+        const toolName = event.target.getAttribute('data-tool');
+
+        if (event.target.checked) {
+          ostrich.activateTool(canvasElement, toolName);
+        } else {
+          ostrich.deactivateTool(canvasElement, toolName);
+        }
+      }
+
+      for (const name of [
+        'CursorInfoTool',
+        'PanDraggingTool',
+        'SliceScrollingTool',
+        'VoiWindowDraggingTool',
+        'ZoomDraggingTool',
+      ]) {
+
+        const checkboxElement = document.querySelector(`.toggle-tool-checkbox[data-tool='${name}']`);
+
+        checkboxElement.addEventListener('change', toggleTool);
+        checkboxElement.click(); // activate tool
+      }
 
     </script>
 

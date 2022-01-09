@@ -12,6 +12,8 @@ export class DraggingTool extends Tool {
    */
   #mouseButton
 
+  #eventListeners
+
   #isDragging = false
   #lastOffsetX
   #lastOffsetY
@@ -24,14 +26,28 @@ export class DraggingTool extends Tool {
     super();
 
     this.#mouseButton = mouseButton;
+    this.#eventListeners = {
+      'mousedown': this.#onMouseDown.bind(this),
+      'mousemove': this.#onMouseMove.bind(this),
+      'mouseup': this.#onMouseUp.bind(this),
+      'mouseleave': this.#onMouseLeave.bind(this),
+    };
   }
 
   activate(canvasElement) {
 
-    canvasElement.addEventListener('mousedown', this.#onMouseDown.bind(this));
-    canvasElement.addEventListener('mousemove', this.#onMouseMove.bind(this));
-    canvasElement.addEventListener('mouseup', this.#onMouseUp.bind(this));
-    canvasElement.addEventListener('mouseleave', this.#onMouseLeave.bind(this));
+    canvasElement.addEventListener('mousedown', this.#eventListeners.mousedown);
+    canvasElement.addEventListener('mousemove', this.#eventListeners.mousemove);
+    canvasElement.addEventListener('mouseup', this.#eventListeners.mouseup);
+    canvasElement.addEventListener('mouseleave', this.#eventListeners.mouseleave);
+  }
+
+  deactivate(canvasElement) {
+
+    canvasElement.removeEventListener('mousedown', this.#eventListeners.mousedown);
+    canvasElement.removeEventListener('mousemove', this.#eventListeners.mousemove);
+    canvasElement.removeEventListener('mouseup', this.#eventListeners.mouseup);
+    canvasElement.removeEventListener('mouseleave', this.#eventListeners.mouseleave);
   }
 
   /**

@@ -8,18 +8,35 @@ export class CursorInfoTool extends Tool {
   #imageContext
   #displayElement
 
-  activate(canvasElement) {
+  #mouseMoveEventListener
 
-    this.#imageContext = getElementImageContext(canvasElement);
+  constructor() {
+
+    super();
 
     this.#displayElement = document.createElement('div');
     this.#displayElement.style.cssText = `
       position: fixed;
       color: red;
     `;
+
+    this.#mouseMoveEventListener = this.#mouseMoveEventHandler.bind(this);
+  }
+
+  activate(canvasElement) {
+
+    this.#imageContext = getElementImageContext(canvasElement);
+
     document.body.appendChild(this.#displayElement);
 
-    document.addEventListener('mousemove', this.#mouseMoveEventHandler.bind(this));
+    document.addEventListener('mousemove', this.#mouseMoveEventListener);
+  }
+
+  deactivate(canvasElement) {
+
+    document.removeEventListener('mousemove', this.#mouseMoveEventListener);
+
+    document.body.removeChild(this.#displayElement);
   }
 
   /**

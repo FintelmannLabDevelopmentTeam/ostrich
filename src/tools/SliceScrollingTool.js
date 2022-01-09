@@ -10,6 +10,11 @@ export class SliceScrollingTool extends Tool {
     canvasElement.addEventListener('wheel', SliceScrollingTool.#wheelEventHandler);
   }
 
+  deactivate(canvasElement) {
+
+    canvasElement.removeEventListener('wheel', SliceScrollingTool.#wheelEventHandler);
+  }
+
   static #wheelEventHandler(event) {
 
     const canvasElement = event.target;

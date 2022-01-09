@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+- Chg: Tool de-/activation has now been separated from its addition to an ostrich instance by introducing`ostrich.addTool()`
+- Fix: Could not deactivate tools
+
 ## 0.3.0
 
 - Chg: Now using `Int16Array` instead of `Uint16Array` for voxel data

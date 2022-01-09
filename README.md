@@ -66,6 +66,7 @@ The following events are dispatched on an initialized `<canvas>`-element:
 | `ostrich.initialized`      | Image has been initialized.                | -                                                           |
 | `ostrich.rendered`         | Image has been rendered after some change. | -                                                           |
 | `ostrich.sliceChanged`     | Slice has been changed.                    | `{ from: number, to: number }`                              |
+| `ostrich.toolAdded`        | Tool has been added.                       | `{ tool: Tool }`                                            |
 | `ostrich.toolActivated`    | Tool has been activated.                   | `{ tool: Tool }`                                            |
 | `ostrich.toolDeactivated`  | Tool has been deactivated.                 | `{ tool: Tool }`                                            |
 | `ostrich.voiWindowChanged` | VOI window has been changed.               | `{ newWindowCenter: number, newWindowWidth: number }`       |
@@ -81,7 +82,9 @@ const canvasElement = document.getElementById('my-canvas-element');
 const imageData = new ostrich.OstrichImageData(/*...*/);
 
 ostrich.initializeElement(canvasElement, imageData);
-ostrich.activateTool(canvasElement, new ostrich.SliceScrollingTool());
+ostrich.addTool(canvasElement, new ostrich.SliceScrollingTool());
+ostrich.activateTool(canvasElement, 'SliceScrollingTool'); // tool name corresponds to class name
+ostrich.deactivateTool(canvasElement, 'SliceScrollingTool');
 ```
 
 ### All tools
